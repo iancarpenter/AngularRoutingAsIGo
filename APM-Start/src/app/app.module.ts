@@ -17,9 +17,12 @@ import { MessageModule } from './messages/message.module';
 
 import { AppRoutingModule } from './app-routing-module';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),    
     ProductModule,
