@@ -21,7 +21,7 @@ import { SharedModule } from '../shared/shared.module';
         children: [
           { path: '', 
             component: ProductListComponent,
-            resolve: { resolvedProducts: ProductsResolver }, 
+            resolve: { resolvedData: ProductsResolver }, 
           },
           {
             path: ':id',

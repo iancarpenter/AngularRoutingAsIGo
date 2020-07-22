@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
     this.showImage = this.route.snapshot.queryParamMap.get('showImage') === 'true';
 
     this.route.data.subscribe( data => {
-      const resolvedData = data['resolvedProducts'];
+      const resolvedData = data['resolvedData'];
       this.products = resolvedData;
       this.errorMessage = resolvedData.error;
       this.filteredProducts = this.performFilter(this.listFilter);
