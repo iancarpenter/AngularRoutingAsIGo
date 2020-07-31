@@ -10,7 +10,6 @@ import { ProductEditInfoComponent } from './product-edit/product-edit-info.compo
 import { ProductEditTagsComponent } from './product-edit/product-edit-tags.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { AuthGuard } from '../user/auth.guard';
 import { ProductEditGuard } from '../products/product-edit/product-edit.guard';
 
 
@@ -19,31 +18,26 @@ import { ProductEditGuard } from '../products/product-edit/product-edit.guard';
     SharedModule,
     RouterModule.forChild([
       {
-        path: 'products',
-        // canActivate: [AuthGuard],
-        children: [
-          { path: '', 
-            component: ProductListComponent,
-            resolve: { resolvedData: ProductsResolver }, 
-          },
-          {
-            path: ':id',
-            component: ProductDetailComponent,
-            resolve: { resolvedData: ProductResolver }
-          },
-          {
-            path: ':id/edit',
-            component: ProductEditComponent,
-            canDeactivate: [ProductEditGuard],
-            resolve: { resolvedData: ProductResolver },
-            children: [
-              { path: '', redirectTo: 'info', pathMatch: 'full' },
-              { path: 'info', component: ProductEditInfoComponent },
-              { path: 'tags', component: ProductEditTagsComponent }
-            ]
-          }
-        ]
+        path: '',
+        component: ProductListComponent,
+        resolve: { resolvedData: ProductsResolver },
       },
+      {
+        path: ':id',
+        component: ProductDetailComponent,
+        resolve: { resolvedData: ProductResolver }
+      },
+      {
+        path: ':id/edit',
+        component: ProductEditComponent,
+        canDeactivate: [ProductEditGuard],
+        resolve: { resolvedData: ProductResolver },
+        children: [
+          { path: '', redirectTo: 'info', pathMatch: 'full' },
+          { path: 'info', component: ProductEditInfoComponent },
+          { path: 'tags', component: ProductEditTagsComponent }
+        ]
+      }
     ])
   ],
   declarations: [
